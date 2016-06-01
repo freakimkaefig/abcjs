@@ -228,6 +228,7 @@ ABCJS.write.VoiceElement.prototype.draw = function (renderer, bartop) {
 	//this.barbottom = renderer.calcY(2);
 
 	renderer.measureNumber = null;
+	renderer.noteNumber = null;
 	if (this.header) { // print voice name
 		var textpitch = 14 - (this.voicenumber+1)*(12/(this.voicetotal+1));
 		renderer.renderText(renderer.padding.left, renderer.calcY(textpitch), this.header, 'voicefont', 'staff-extra voice-name', 'start');
@@ -238,11 +239,17 @@ ABCJS.write.VoiceElement.prototype.draw = function (renderer, bartop) {
 		var justInitializedMeasureNumber = false;
 		if (child.type !== 'staff-extra' && renderer.measureNumber === null) {
 			renderer.measureNumber = 0;
+			renderer.noteNumber = 0;
 			justInitializedMeasureNumber = true;
 		}
 		child.draw(renderer, (this.barto || i===ii-1)?bartop:0);
-		if (child.type === 'bar' && !justInitializedMeasureNumber)
+		if (child.type === 'bar' && !justInitializedMeasureNumber) {
 			renderer.measureNumber++;
+			renderer.noteNumber = 0;
+		}
+		if (child.type === 'note') {
+			renderer.noteNumber++;
+		}
 	}
 
 	renderer.measureNumber = 0;

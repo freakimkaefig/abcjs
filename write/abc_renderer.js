@@ -324,6 +324,7 @@ ABCJS.write.Renderer.prototype.engraveTopText = function(width, abctune) {
 ABCJS.write.Renderer.prototype.engraveExtraText = function(width, abctune) {
 	this.lineNumber = null;
 	this.measureNumber = null;
+	this.noteNumber = null;
 	this.voiceNumber = null;
 
 	var extraText;
@@ -614,6 +615,7 @@ ABCJS.write.Renderer.prototype.addClasses = function (c) {
 	if (c.length > 0) ret.push(c);
 	if (this.lineNumber !== null) ret.push("l"+this.lineNumber);
 	if (this.measureNumber !== null) ret.push("m"+this.measureNumber);
+	if (this.noteNumber !== null) ret.push("n"+this.noteNumber);
 	if (this.voiceNumber !== null) ret.push("v"+this.voiceNumber);
 	return ret.join(' ');
 };
