@@ -9439,7 +9439,6 @@ ABCJS.write.EngraverController.prototype.addSelectListener = function (listener)
  */
 ABCJS.write.EngraverController.prototype.rangeHighlight = function(start,end)
 {
-    this.clearSelection();
     for (var line=0;line<this.staffgroups.length; line++) {
 	var voices = this.staffgroups[line].voices;
 	for (var voice=0;voice<voices.length;voice++) {
