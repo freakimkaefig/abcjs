@@ -9387,16 +9387,18 @@ ABCJS.write.EngraverController.prototype.engraveStaffLine = function (staffGroup
  * @protected
  */
 ABCJS.write.EngraverController.prototype.notifySelect = function (abselem) {
-  this.clearSelection();
-  if (abselem.highlight) {
-    this.selected = [abselem];
-    abselem.highlight();
-  }
-  var abcelem = abselem.abcelem || {};
-  for (var i=0; i<this.listeners.length;i++) {
-	  if (this.listeners[i].highlight)
-		  this.listeners[i].highlight(abcelem);
-  }
+	if (this.editable) {
+		this.clearSelection();
+		if (abselem.highlight) {
+			this.selected = [abselem];
+			abselem.highlight();
+		}
+		var abcelem = abselem.abcelem || {};
+		for (var i = 0; i < this.listeners.length; i++) {
+			if (this.listeners[i].highlight)
+				this.listeners[i].highlight(abcelem);
+		}
+	}
 };
 
 /**
