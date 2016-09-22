@@ -9387,16 +9387,18 @@ ABCJS.write.EngraverController.prototype.engraveStaffLine = function (staffGroup
  * @protected
  */
 ABCJS.write.EngraverController.prototype.notifySelect = function (abselem) {
-  this.clearSelection();
-  if (abselem.highlight) {
-    this.selected = [abselem];
-    abselem.highlight();
-  }
-  var abcelem = abselem.abcelem || {};
-  for (var i=0; i<this.listeners.length;i++) {
-	  if (this.listeners[i].highlight)
-		  this.listeners[i].highlight(abcelem);
-  }
+	if (this.editable) {
+		this.clearSelection();
+		if (abselem.highlight) {
+			this.selected = [abselem];
+			abselem.highlight();
+		}
+		var abcelem = abselem.abcelem || {};
+		for (var i = 0; i < this.listeners.length; i++) {
+			if (this.listeners[i].highlight)
+				this.listeners[i].highlight(abcelem);
+		}
+	}
 };
 
 /**
@@ -9437,7 +9439,6 @@ ABCJS.write.EngraverController.prototype.addSelectListener = function (listener)
  */
 ABCJS.write.EngraverController.prototype.rangeHighlight = function(start,end)
 {
-    this.clearSelection();
     for (var line=0;line<this.staffgroups.length; line++) {
 	var voices = this.staffgroups[line].voices;
 	for (var voice=0;voice<voices.length;voice++) {
@@ -11562,7 +11563,6 @@ ABCJS.write.VoiceElement.prototype.draw = function (renderer, bartop) {
 		}
 	}
 
-	renderer.measureNumber = 0;
 	window.ABCJS.parse.each(this.beams, function(beam) {
 		if (beam === 'bar')
 			renderer.measureNumber++;
@@ -11570,7 +11570,6 @@ ABCJS.write.VoiceElement.prototype.draw = function (renderer, bartop) {
 			beam.draw(renderer); // beams must be drawn first for proper printing of triplets, slurs and ties.
 	});
 
-	renderer.measureNumber = 0;
 	var self = this;
 	window.ABCJS.parse.each(this.otherchildren, function(child) {
 		if (child === 'bar')

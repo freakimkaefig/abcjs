@@ -252,7 +252,6 @@ ABCJS.write.VoiceElement.prototype.draw = function (renderer, bartop) {
 		}
 	}
 
-	renderer.measureNumber = 0;
 	window.ABCJS.parse.each(this.beams, function(beam) {
 		if (beam === 'bar')
 			renderer.measureNumber++;
@@ -260,7 +259,6 @@ ABCJS.write.VoiceElement.prototype.draw = function (renderer, bartop) {
 			beam.draw(renderer); // beams must be drawn first for proper printing of triplets, slurs and ties.
 	});
 
-	renderer.measureNumber = 0;
 	var self = this;
 	window.ABCJS.parse.each(this.otherchildren, function(child) {
 		if (child === 'bar')
