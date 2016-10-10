@@ -1,0 +1,12 @@
+{
+  "name": "abcjs",
+  "private": true,
+  "version": "2.4.0",
+  "description": "javascript for rendering abc music notation (forked from https://github.com/paulrosen/abcjs)",
+  "author": "Lukas Lamm <info@lukaslamm.com>",
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-concat": "^2.6.0"
+  },
+  "dependencies": {}
+}

@@ -372,6 +372,7 @@ ABCJS.write.StaffGroupElement.prototype.draw = function (renderer) {
 
 	var bartop = 0;
 	renderer.measureNumber = null;
+	renderer.noteNumber = null;
 	for (var i=0;i<this.voices.length;i++) {
 		var staff = this.voices[i].staff;
 		renderer.y = staff.absoluteY;
@@ -393,6 +394,7 @@ ABCJS.write.StaffGroupElement.prototype.draw = function (renderer) {
 		}
 	}
 	renderer.measureNumber = null;
+	renderer.noteNumber = null;
 
 	// connect all the staves together with a vertical line
 	if (this.staffs.length>1) {
